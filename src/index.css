@@ -24,3 +24,7 @@
 body {
   font-family: 'Hero-Regular', Arial, sans-serif;
 }
+
+html, body, #root, .h-full {
+  height: 100%;
+}

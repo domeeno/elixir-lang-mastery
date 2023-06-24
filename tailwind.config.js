@@ -5,8 +5,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "cream": "#F7F2EF",
-        "cacao": "#30251D"
       },
       fontFamily: {
       },

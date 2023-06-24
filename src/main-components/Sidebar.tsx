@@ -4,7 +4,7 @@ import { SiteDescription } from '../components/SiteDescription'
 
 const Sidebar = () => {
   return (
-    <div className='flex flex-col w-1/3 py-8 justify-between h-full bg-cream'>
+    <div className='sm:flex flex-col w-1/3 py-8 justify-between h-full bg-cream hidden'>
       <Line />
       <div>
         <SiteDescription />

@@ -1,4 +1,4 @@
-import React from 'react'
+import { text } from '../contants'
 import { Line } from './Line'
 
 const Email = () => {
@@ -7,7 +7,7 @@ const Email = () => {
       <div className='w-full'>
         <Line />
       </div>
-      <a className="text-xs px-6 font-extralight" href='mailto:dominicflocea.dev@gmail.com'>dominicflocea.dev@gmail.com</a>
+      <a className="text-xs text-cacao px-6 font-extralight" href='mailto:dominicflocea.dev@gmail.com'>{text.personalInfo.email}</a>
       <div className='w-full'>
         <Line />
       </div>

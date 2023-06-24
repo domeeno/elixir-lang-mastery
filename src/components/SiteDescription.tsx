@@ -14,7 +14,7 @@ const SiteDescription = () => {
       </div>
       <p className="text-cacao text-sm w-3/4 text-right">
         {text.projectDescription.text0}
-        <a href={text.projectDescription.linkUrl} className="text-cacao underline">{text.projectDescription.linkText}</a>
+        <a target="_blank" rel="noopener noreferrer" href={text.projectDescription.linkUrl} className="text-cacao underline">{text.projectDescription.linkText}</a>
         {text.projectDescription.text1}
       </p>
     </div>

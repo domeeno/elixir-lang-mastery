@@ -1,4 +1,4 @@
-import { text } from '../contants'
+import { personalInfo } from '../contants'
 import { Line } from './Line'
 
 const Email = () => {
@@ -7,7 +7,7 @@ const Email = () => {
       <div className='w-full'>
         <Line />
       </div>
-      <a className="text-xs text-cacao px-6 font-extralight" href='mailto:dominicflocea.dev@gmail.com'>{text.personalInfo.email}</a>
+      <a target="_blank" rel="noopener noreferrer" className="text-xs text-cacao px-6 font-extralight" href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
       <div className='w-full'>
         <Line />
       </div>

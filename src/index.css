@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: 'Hero-Bold';
+  src: url('/fonts/Hero-Bold.otf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Hero-Regular';
+  src: url('/fonts/Hero-Regular.otf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Hero-Light';
+  src: url('/fonts/Hero-Light.otf');
+  font-weight: lighter;
+}
+
+body {
+  font-family: 'Hero-Regular', Arial, sans-serif;
+}

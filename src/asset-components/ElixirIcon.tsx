@@ -47,4 +47,5 @@ const ElixirIcon = (props: SVGProps<SVGSVGElement>) => (
     </g>
   </svg>
 )
+
 export { ElixirIcon }

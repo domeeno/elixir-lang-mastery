@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 
 export const GameMode = createContext(false);
 export const GameModeUpdate = createContext(() => { });
@@ -20,7 +20,13 @@ export const GameModeProvider = (props: Props) => {
 
   const toggleGameMode = () => {
     setGameMode(prevGameMode => !prevGameMode);
+    localStorage.setItem('gameMode', JSON.stringify(!gameMode));
   };
+
+  useEffect(() => {
+    setGameMode(JSON.parse(localStorage.getItem('gameMode') === "true"))
+  }, [])
+  
 
   return (
     <GameMode.Provider value={gameMode}>

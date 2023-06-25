@@ -1,5 +1,3 @@
-
-
 export const text = {
 	"projectDescription": {
 		"id": "projectDescription",

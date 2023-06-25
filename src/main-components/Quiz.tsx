@@ -8,7 +8,14 @@ import { InGameElixirIcon } from "../asset-components/InGameElixirIcon"
 const Quiz = () => {
   const randomQuestions = () => {
     const randomQuestions: Question[] = []
-    randomQuestions.push(Questions[0])
+    const randomNumbers: number[] = []
+    while (randomQuestions.length < Questions.length) {
+      const randomNumber = Math.floor(Math.random() * Questions.length)
+      if (!randomNumbers.includes(randomNumber)) {
+        randomNumbers.push(randomNumber)
+        randomQuestions.push(Questions[randomNumber])
+      }
+    }
     return randomQuestions
   }
 
@@ -36,7 +43,7 @@ const Quiz = () => {
               <h3>{"Score 0/10"}</h3>
             </div>
           </div>
-          <div className="">
+          <div>
             <p className="text-cacao p-4">{questions[questionIndex].question}</p>
             <h1 className="text-cacao text-xs p-4">Category: {questions[questionIndex].category.join(", ")}</h1>
           </div>

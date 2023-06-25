@@ -5,7 +5,7 @@ const App = () => {
 
   return (
     <GameModeProvider>
-        <LandingPage />
+      <LandingPage />
     </GameModeProvider>
   )
 }

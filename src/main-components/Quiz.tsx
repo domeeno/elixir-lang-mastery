@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 
-import { useGameModeUpdate, useGameModeContext, useGameModeContextUpdate } from "../context/GameModeContext"
-import { Questions, Question } from "../questions"
-import { Answer } from "../components/Answer"
+import { useGameModeUpdate, useGameModeContext, useGameModeContextUpdate, GameData } from "../context/GameModeContext"
+import { Questions, Question, Answer } from "../questions"
+import { AnswerOption } from "../components/AnswerOption"
 import { Code } from "../components/Code"
 import { shuffleArrays } from "../utils"
 
@@ -19,26 +19,53 @@ const Quiz = () => {
   }
 
   const toggleGameMode = useGameModeUpdate()
-
   const gameData = useGameModeContext()
+  const setGameData = useGameModeContextUpdate({} as GameData)
 
   const [questions, setQuestions] = useState<Question[]>(loadQuestions())
   const [questionIndex, setQuestionIndex] = useState(gameData.questionIndex)
+  const [answered, setAnswered] = useState(gameData.answered)
+  const [score, setScore] = useState(gameData.score)
+  const [answersOptions, setAnswersOptions] = useState<Answer[]>([])
 
-  const handleAnswerClick = (answerId: number, isCorrect: boolean) => {
-    if (isCorrect) {
+  useEffect(() => {
+    setAnswersOptions(shuffleArrays(questions[questionIndex].correctAnswers, questions[questionIndex].incorrectAnswers))
+  }, [questionIndex])
+
+  const handleAnswerClick = (answerId: number) => {
+    console.log(answerId, questions[questionIndex].correctAnswers[0].id)
+    if (answerId === questions[questionIndex].correctAnswers[0].id) {
       console.log("correct")
-      // setQuestionIndex(prevQuestionIndex => prevQuestionIndex + 1)
+      setScore(prevScore => prevScore + 1)
+      setAnswered(true)
     } else {
       console.log("incorrect")
+      setAnswered(true)
     }
 
-    return answerId === questions[questionIndex].correctAnswers[0].id
+    setGameData({
+      questionIds: gameData.questionIds,
+      questionIndex: gameData.questionIndex,
+      answered: true,
+      score: gameData.score + 1
+    })
+  }
+
+  const handleNextQuestion = () => {
+    setQuestionIndex(prevQuestionIndex => prevQuestionIndex + 1)
+    setAnswered(false)
+
+    setGameData({
+      questionIds: gameData.questionIds,
+      questionIndex: gameData.questionIndex + 1,
+      answered: false,
+      score: gameData.score
+    })
   }
 
   return (
     <div className='flex flex-row w-full h-full justify-center items-center bg-cream'>
-      <div className='flex flex-col justify-center items-center md:w-1/3 sm:w-1/2 p-12 sm:p-0 w-full bg-cream'>
+      <div className='flex flex-col justify-center items-center md:w-1/3 sm:w-1/2 p-8 sm:p-0 w-full bg-cream'>
         <div className="p-4">
           <InGameElixirIcon />
         </div>
@@ -48,7 +75,7 @@ const Quiz = () => {
               <h3>{"< Back"}</h3>
             </div>
             <div className="p-4 text-cacao text-xs">
-              <h3>{`Score ${gameData.score}/10`}</h3>
+              <h3>{`Score ${score}/10`}</h3>
             </div>
           </div>
           <div>
@@ -59,11 +86,22 @@ const Quiz = () => {
             <h1 className="text-cacao text-xs p-4">Category: {questions[questionIndex].category.join(", ")}</h1>
           </div>
         </div>
-        <div className="py-4" />
+        <div className="py-2" />
         {
-          shuffleArrays(questions[questionIndex].correctAnswers, questions[questionIndex].incorrectAnswers).map((answer, index) => {
-            return <Answer key={answer.id} index={index} handleAnswerClick={handleAnswerClick} answerId={answer.id} isCorrect={answer.correct} text={answer.text} />
+          answersOptions &&
+          answersOptions.map((answer, index) => {
+            return <AnswerOption handleAnswerClick={handleAnswerClick} key={answer.id} index={index} answerId={answer.id} isCorrect={answer.correct} text={answer.text} />
           })
+        }
+        {
+          answered ?
+            <div className="rounded-lg my-4 bg-cacao border-2 border-cream shadow-[-2px_-2px] shadow-cacao">
+              <button onClick={handleNextQuestion} className="p-4 text-cream text-sm">{"Next Question >"}</button>
+            </div>
+            :
+            <div className="my-4 bg-cream">
+              <div className="p-4 text-cream">{"-"}</div>
+            </div>
         }
       </div>
     </div>

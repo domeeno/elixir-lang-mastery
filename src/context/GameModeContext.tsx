@@ -4,7 +4,7 @@ import { Questions } from '../questions';
 export const GameMode = createContext(false);
 export const GameModeUpdate = createContext(() => { });
 export const GameModeContext = createContext({} as GameData);
-export const GameModeContextUpdate = createContext((gameData: GameData) => { });
+export const GameModeContextUpdate = createContext(() => { });
 
 export const useGameMode = () => {
   return useContext(GameMode)
@@ -18,7 +18,7 @@ export const useGameModeContext = () => {
   return useContext(GameModeContext)
 }
 
-export const useGameModeContextUpdate = () => {
+export const useGameModeContextUpdate = (gameData: GameData) => {
   return useContext(GameModeContextUpdate)
 }
 
@@ -26,7 +26,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-interface GameData {
+export interface GameData {
   questionIds: string[];
   questionIndex: number;
   answered: boolean;
@@ -71,6 +71,7 @@ export const GameModeProvider = (props: Props) => {
   };
 
   const updateGameModeContext = (gameData: GameData) => {
+    console.log("updateGameModeContext", gameData)
     localStorage.setItem('gameData', JSON.stringify(gameData));
     setGameModeContext(gameData)
   }

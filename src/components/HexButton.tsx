@@ -2,8 +2,8 @@ import { HexagonFillIcon } from "../asset-components/HexagonFillIcon"
 import { HexagonNoFillicon } from "../asset-components/HexagonNoFillicon"
 
 type ButtonProps = {
-  buttonText: String
-  scale: String
+  buttonText: string
+  scale: string
 }
 
 const HexButton = (props: ButtonProps) => {

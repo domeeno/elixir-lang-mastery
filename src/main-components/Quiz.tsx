@@ -1,32 +1,40 @@
-import { useState, useEffect } from "react"
-import { useGameModeUpdate } from "../context/GameModeContext"
+import { useEffect, useState } from "react"
+
+import { useGameModeUpdate, useGameModeContext, useGameModeContextUpdate } from "../context/GameModeContext"
 import { Questions, Question } from "../questions"
 import { Answer } from "../components/Answer"
-import { InGameElixirIcon } from "../asset-components/InGameElixirIcon"
 import { Code } from "../components/Code"
+import { shuffleArrays } from "../utils"
+
+import { InGameElixirIcon } from "../asset-components/InGameElixirIcon"
 
 const Quiz = () => {
-  const randomQuestions = () => {
-    const randomQuestions: Question[] = []
-    const randomNumbers: number[] = []
-    while (randomQuestions.length < Questions.length) {
-      const randomNumber = Math.floor(Math.random() * Questions.length)
-      if (!randomNumbers.includes(randomNumber)) {
-        randomNumbers.push(randomNumber)
-        randomQuestions.push(Questions[randomNumber])
-      }
-    }
-    return randomQuestions
+  const loadQuestions = (): Question[] => {
+    const questions: Question[] = []
+    gameData.questionIds.forEach((questionId) => {
+      questions.push(Questions.find(question => question.id === questionId)!)
+    })
+
+    return questions
   }
 
   const toggleGameMode = useGameModeUpdate()
 
-  const [questions, setQuestions] = useState<Question[]>(randomQuestions())
-  const [questionIndex, setQuestionIndex] = useState(0)
+  const gameData = useGameModeContext()
 
-  useEffect(() => {
-    setQuestions(randomQuestions())
-  }, [])
+  const [questions, setQuestions] = useState<Question[]>(loadQuestions())
+  const [questionIndex, setQuestionIndex] = useState(gameData.questionIndex)
+
+  const handleAnswerClick = (answerId: number, isCorrect: boolean) => {
+    if (isCorrect) {
+      console.log("correct")
+      // setQuestionIndex(prevQuestionIndex => prevQuestionIndex + 1)
+    } else {
+      console.log("incorrect")
+    }
+
+    return answerId === questions[questionIndex].correctAnswers[0].id
+  }
 
   return (
     <div className='flex flex-row w-full h-full justify-center items-center bg-cream'>
@@ -40,7 +48,7 @@ const Quiz = () => {
               <h3>{"< Back"}</h3>
             </div>
             <div className="p-4 text-cacao text-xs">
-              <h3>{"Score 0/10"}</h3>
+              <h3>{`Score ${gameData.score}/10`}</h3>
             </div>
           </div>
           <div>
@@ -53,13 +61,8 @@ const Quiz = () => {
         </div>
         <div className="py-4" />
         {
-          questions[questionIndex].correctAnswers.map((answer, index) => {
-            return <Answer key={answer.id} index={index} isCorrect={answer.correct} text={answer.text} />
-          })
-        }
-        {
-          questions[questionIndex].incorrectAnswers.map((answer, index) => {
-            return <Answer key={answer.id} index={index} isCorrect={answer.correct} text={answer.text} />
+          shuffleArrays(questions[questionIndex].correctAnswers, questions[questionIndex].incorrectAnswers).map((answer, index) => {
+            return <Answer key={answer.id} index={index} handleAnswerClick={handleAnswerClick} answerId={answer.id} isCorrect={answer.correct} text={answer.text} />
           })
         }
       </div>

@@ -11,10 +11,10 @@ import { InGameElixirIcon } from "../asset-components/InGameElixirIcon"
 const Quiz = () => {
   const loadQuestions = (): Question[] => {
     const questions: Question[] = []
+    console.log(gameData.questionIds)
     gameData.questionIds.forEach((questionId) => {
       questions.push(Questions.find(question => question.id === questionId)!)
     })
-
     return questions
   }
 

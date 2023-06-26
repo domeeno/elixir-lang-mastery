@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from 'react';
-import { Questions, Question } from '../questions';
+import { Questions } from '../questions';
 
 export const GameMode = createContext(false);
 export const GameModeUpdate = createContext(() => { });
@@ -55,29 +55,43 @@ export const GameModeProvider = (props: Props) => {
     localStorage.setItem('gameMode', JSON.stringify(!gameMode));
     if (gameMode) {
       localStorage.removeItem('gameData');
+      setGameModeContext({} as GameData);
     } else {
+      const initGameData = {
+        questionIds: randomQuestions(),
+        questionIndex: 0,
+        answered: false,
+        score: 0
+      }
       localStorage.setItem('gameData', JSON.stringify(
-        {
-          questionIds: randomQuestions(),
-          questionIndex: 0,
-          answered: false,
-          score: 0
-        }
+        initGameData
       ))
+      setGameModeContext(initGameData)
     }
   };
 
   const updateGameModeContext = (gameData: GameData) => {
-    localStorage.setItem('questionIds', JSON.stringify(gameData));
+    localStorage.setItem('gameData', JSON.stringify(gameData));
     setGameModeContext(gameData)
   }
 
   useEffect(() => {
     JSON.parse(localStorage.getItem('gameMode') === "true") ? setGameMode(true) : setGameMode(false)
 
-    const gameData = JSON.parse(localStorage.getItem('gameData') || '{}')
+    let gameData = JSON.parse(localStorage.getItem('gameData') || "{}")
+
+    if (gameData.questionIds === undefined) {
+      gameData = {
+        questionIds: randomQuestions(),
+        questionIndex: 0,
+        answered: false,
+        score: 0
+      }
+    }
 
     setGameModeContext(gameData)
+
+    localStorage.setItem('gameData', JSON.stringify(gameData));
   }, [])
 
 

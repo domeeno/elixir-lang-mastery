@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
-import HexButton from "../components/HexButton"
 import { useGameModeUpdate } from "../context/GameModeContext"
 import { Questions, Question } from "../questions"
-import Answer from "../components/Answer"
+import { Answer } from "../components/Answer"
 import { InGameElixirIcon } from "../asset-components/InGameElixirIcon"
+import { Code } from "../components/Code"
 
 const Quiz = () => {
   const randomQuestions = () => {
@@ -45,9 +45,13 @@ const Quiz = () => {
           </div>
           <div>
             <p className="text-cacao p-4">{questions[questionIndex].question}</p>
+            {questions[questionIndex].code &&
+              <Code code={questions[questionIndex].code} />
+            }
             <h1 className="text-cacao text-xs p-4">Category: {questions[questionIndex].category.join(", ")}</h1>
           </div>
         </div>
+        <div className="py-4" />
         {
           questions[questionIndex].correctAnswers.map((answer, index) => {
             return <Answer key={answer.id} index={index} isCorrect={answer.correct} text={answer.text} />

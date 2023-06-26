@@ -1,5 +1,3 @@
-import React from 'react'
-
 type Props = {
   isCorrect: boolean
   index: number
@@ -22,10 +20,10 @@ const Answer = (props: Props) => {
         </div>
       </div>
       <div className='border-2 border-cacao rounded-lg w-full shadow-[-2px_-2px] shadow-cacao'>
-        <h2 className='p-4 text-cacao'>{props.text}</h2>
+        <h2 className='p-4 text-sm sm:test-base text-cacao'>{props.text}</h2>
       </div>
     </div>
   )
 }
 
-export default Answer
+export { Answer }

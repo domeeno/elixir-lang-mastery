@@ -10,6 +10,7 @@ export interface Question {
     question: string,
     difficulty: number,
     questionType: QuestionType,
+    code: string | null | undefined,
     correctAnswers: Answer[],
     incorrectAnswers: Answer[]
 }

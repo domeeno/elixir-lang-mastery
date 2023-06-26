@@ -1,4 +1,4 @@
-import Email from '../components/Email'
+import { Email } from '../components/Email'
 import { Line } from '../components/Line'
 import { SiteDescription } from '../components/SiteDescription'
 

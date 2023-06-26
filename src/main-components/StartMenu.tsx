@@ -1,5 +1,5 @@
 import { SemiEllipseIcon } from "../asset-components/SemiEllipseIcon"
-import HexButton from "../components/HexButton"
+import { HexButton } from "../components/HexButton"
 import { useGameModeUpdate } from "../context/GameModeContext"
 
 const StartMenu = () => {

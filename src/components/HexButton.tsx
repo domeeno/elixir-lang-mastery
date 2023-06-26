@@ -16,4 +16,4 @@ const HexButton = (props: ButtonProps) => {
   )
 }
 
-export default HexButton
+export { HexButton }

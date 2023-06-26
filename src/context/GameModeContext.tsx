@@ -24,7 +24,7 @@ export const GameModeProvider = (props: Props) => {
   };
 
   useEffect(() => {
-    setGameMode(JSON.parse(localStorage.getItem('gameMode') === "true"))
+    JSON.parse(localStorage.getItem('gameMode') === "true") ? setGameMode(true) : setGameMode(false)
   }, [])
   
 

@@ -9,7 +9,13 @@ const Code = (props: Props) => {
         <h3 className="text-cream px-4 text-xs">Code</h3>
       </div>
       <div className="border-2 border-cacao rounded-b-lg mx-4">
-        <h3 className="text-cacao px-4 py-8 font-mono sm:text-sm text-xs">{props.code}</h3>
+        <div className="px-4 py-4">
+          {
+            props.code.split("\n").map((line, index) => {
+              return <p key={index} className="text-cacao font-mono sm:text-sm text-xs">{line}</p>
+            })
+          }
+        </div>
       </div>
     </div>
   )

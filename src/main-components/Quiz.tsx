@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 
-import { useGameModeUpdate, useGameModeContext, useGameModeContextUpdate, GameData } from "../context/GameModeContext"
-import { Questions, Question, Answer } from "../questions"
+import { useGameModeUpdate, useGameModeContext, useGameModeContextUpdate } from "../context/GameModeContext"
+import { Questions } from "../questions"
+import { Question, Answer, GameData } from "../models"
 import { AnswerOption } from "../components/AnswerOption"
 import { Code } from "../components/Code"
 import { shuffleArrays } from "../utils"
@@ -77,9 +78,19 @@ const Quiz = () => {
           <div>
             <p className="text-cacao p-4">{questions[questionIndex].question}</p>
             {questions[questionIndex].code &&
-              <Code code={questions[questionIndex].code} />
+              <Code code={questions[questionIndex].code!} />
             }
-            <h1 className="text-cacao text-xs p-4">Category: {questions[questionIndex].category.join(", ")}</h1>
+            <div className="flex flex-row">
+              <h3 className="flex-grow text-cacao text-xs p-4">Category: {questions[questionIndex].category.join(", ")}</h3>
+              <div className="flex flex-row items-center p-4">
+                <h3 className="text-cacao text-xs mr-1">Difficulty: </h3>
+                {
+                  [1, 2, 3].map( (difficulty) => {
+                    return <div key={difficulty} className={`rounded-full mx-1 w-[8px] h-[8px]  ${questions[questionIndex].difficulty >= difficulty ? "bg-cacao" : "bg-neutral-gray" }`}/>
+                  })
+                }
+              </div>
+            </div>
           </div>
         </div>
         <div className="py-2" />

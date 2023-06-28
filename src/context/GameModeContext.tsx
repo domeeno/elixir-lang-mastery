@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { Questions } from '../questions';
+import { GameData } from '../models';
 
 export const GameMode = createContext(false);
 export const GameModeUpdate = createContext(() => { });
@@ -25,13 +26,6 @@ export const useGameModeContextUpdate = (gameData: GameData) => {
 type Props = {
   children: React.ReactNode;
 };
-
-export interface GameData {
-  questionIds: string[];
-  questionIndex: number;
-  answered: boolean;
-  score: number;
-}
 
 const randomQuestions = () => {
   const randomQuestions: string[] = []

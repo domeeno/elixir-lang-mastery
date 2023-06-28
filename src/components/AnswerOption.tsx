@@ -32,6 +32,7 @@ const AnswerOption = (props: Props) => {
     }
     return () => {
       setHighlight("")
+      setClickedId(-1)
     }
   }, [answered])
 

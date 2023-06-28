@@ -11,7 +11,6 @@ import { InGameElixirIcon } from "../asset-components/InGameElixirIcon"
 const Quiz = () => {
   const loadQuestions = (): Question[] => {
     const questions: Question[] = []
-    console.log(gameData.questionIds)
     gameData.questionIds.forEach((questionId) => {
       questions.push(Questions.find(question => question.id === questionId)!)
     })
@@ -33,13 +32,10 @@ const Quiz = () => {
   }, [questionIndex])
 
   const handleAnswerClick = (answerId: number) => {
-    console.log(answerId, questions[questionIndex].correctAnswers[0].id)
     if (answerId === questions[questionIndex].correctAnswers[0].id) {
-      console.log("correct")
       setScore(prevScore => prevScore + 1)
       setAnswered(true)
     } else {
-      console.log("incorrect")
       setAnswered(true)
     }
 
@@ -90,7 +86,7 @@ const Quiz = () => {
         {
           answersOptions &&
           answersOptions.map((answer, index) => {
-            return <AnswerOption handleAnswerClick={handleAnswerClick} key={answer.id} index={index} answerId={answer.id} isCorrect={answer.correct} text={answer.text} />
+            return <AnswerOption handleAnswerClick={handleAnswerClick} key={answer.id} index={index} answerId={answer.id} explanation={questions[questionIndex].explanation} isCorrect={answer.correct} text={answer.text} />
           })
         }
         {

@@ -71,13 +71,12 @@ export const GameModeProvider = (props: Props) => {
   };
 
   const updateGameModeContext = (gameData: GameData) => {
-    console.log("updateGameModeContext", gameData)
     localStorage.setItem('gameData', JSON.stringify(gameData));
     setGameModeContext(gameData)
   }
 
   useEffect(() => {
-    JSON.parse(localStorage.getItem('gameMode') === "true") ? setGameMode(true) : setGameMode(false)
+    localStorage.getItem('gameMode') === "true" ? setGameMode(true) : setGameMode(false)
 
     let gameData = JSON.parse(localStorage.getItem('gameData') || "{}")
 

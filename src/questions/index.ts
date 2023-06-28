@@ -9,6 +9,7 @@ export interface Question {
   category: string[],
   question: string,
   difficulty: number,
+  explanation: string,
   questionType: QuestionType,
   code: string | null | undefined,
   correctAnswers: Answer[],

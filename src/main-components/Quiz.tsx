@@ -49,6 +49,9 @@ const Quiz = () => {
   }
 
   const handleNextQuestion = () => {
+    // exit game mode if last question
+    if (questionIndex === 9) toggleGameMode()
+
     setQuestionIndex(prevQuestionIndex => prevQuestionIndex + 1)
     setAnswered(false)
 
@@ -85,8 +88,8 @@ const Quiz = () => {
               <div className="flex flex-row items-center p-4">
                 <h3 className="text-cacao text-xs mr-1">Difficulty: </h3>
                 {
-                  [1, 2, 3].map( (difficulty) => {
-                    return <div key={difficulty} className={`rounded-full mx-1 w-[8px] h-[8px]  ${questions[questionIndex].difficulty >= difficulty ? "bg-cacao" : "bg-neutral-gray" }`}/>
+                  [1, 2, 3].map((difficulty) => {
+                    return <div key={difficulty} className={`rounded-full mx-1 w-[8px] h-[8px]  ${questions[questionIndex].difficulty >= difficulty ? "bg-cacao" : "bg-neutral-gray"}`} />
                   })
                 }
               </div>

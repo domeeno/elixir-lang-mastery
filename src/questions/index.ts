@@ -162,32 +162,163 @@ export const Questions: Question[] = [
     "id": "6",
     "category": [QuestionCategory.OPERATORS],
     "difficulty": QuestionDifficulty.EASY,
-    "question": "What will the following Elixir code yeild?",
+    "question": "What would be the right match for the following code?",
     "tip": null,
-    "code": "iex> a = 1\niex> 1 = a",
+    "code": 'HttpResponse = [200, "OK", "Hi"]',
     "questionType": QuestionType.ONE_CORRECT,
-    "explanation": "In Elixir, the '=' operator is used to match values. Because a is already matched with 1, the second line will match 1 with a, and the code will run without errors and it will return the matched value which is 1",
+    "explanation": 'Elixir will match 200 with the first element of the list, and will bind status_text and body to the second and third elements, returning [200, "OK", "Hi"]. The other options will result in a MatchError.',
     "correctAnswers": [
       {
         "id": 1,
-        "text": "1",
+        "text": '[200, status_text, body] = HttpResponse',
         "correct": true
       }
     ],
     "incorrectAnswers": [
       {
         "id": 2,
-        "text": "** (MatchError) no match of right hand side value: 1",
+        "text": "[status_text, body] = HttpResponse",
         "correct": false
       },
       {
         "id": 3,
-        "text": "The code will not compile, we can't match a variable to a value",
+        "text": '[400, "Ok", "Hi"] = HttpResponse',
         "correct": false
       },
       {
         "id": 4,
-        "text": "Nothing",
+        "text": '[200, "Hi", "Ok"] = HttpResponse',
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "category": [QuestionCategory.OPERATORS],
+    "difficulty": QuestionDifficulty.EASY,
+    "question": "",
+    "tip": null,
+    "code": '# What will the following code yeild? \n[a, a] = [2, 1]\n# But the following? \n[a, a] = [1, 1]',
+    "questionType": QuestionType.ONE_CORRECT,
+    "explanation": "Elixir will match 'a' to 2, and then try to match 'a' to 1. Since 'a' is already matched to 2, the code will raise a MatchError. The second one will return the matched values - [1, 1].",
+    "correctAnswers": [
+      {
+        "id": 1,
+        "text": 'MatchError and [1, 1]',
+        "correct": true
+      }
+    ],
+    "incorrectAnswers": [
+      {
+        "id": 2,
+        "text": "MatchError and MatchError",
+        "correct": false
+      },
+      {
+        "id": 3,
+        "text": 'MatchError and 1',
+        "correct": false
+      },
+      {
+        "id": 4,
+        "text": '[2, 1] and [1, 1]',
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "category": [QuestionCategory.DATA_TYPES, QuestionCategory.LISTS],
+    "difficulty": QuestionDifficulty.EASY,
+    "question": "What is the correct syntax for creating an empty list in Elixir?",
+    "tip": null,
+    "code": null,
+    "questionType": QuestionType.ONE_CORRECT,
+    "explanation": "To create an empty list in Elixir, you can use the square brackets with no elements inside '[]'.",
+    "correctAnswers": [
+      {
+        "id": 1,
+        "text": "[]",
+        "correct": true
+      }
+    ],
+    "incorrectAnswers": [
+      {
+        "id": 2,
+        "text": "{}",
+        "correct": false
+      },
+      {
+        "id": 3,
+        "text": "()",
+        "correct": false
+      },
+      {
+        "id": 4,
+        "text": "[nil]",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "category": [QuestionCategory.GENERAL],
+    "difficulty": QuestionDifficulty.EASY,
+    "question": "Which of the following is true about Elixir?",
+    "tip": null,
+    "code": null,
+    "questionType": QuestionType.ONE_CORRECT,
+    "explanation": "Elixir is a dynamically-typed language, which means that variable types are determined at runtime.",
+    "correctAnswers": [
+      {
+        "id": 1,
+        "text": "Elixir is a dynamically-typed language.",
+        "correct": true
+      }
+    ],
+    "incorrectAnswers": [
+      {
+        "id": 2,
+        "text": "Elixir is a statically-typed language.",
+        "correct": false
+      },
+      {
+        "id": 3,
+        "text": "Elixir is a compiled language.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "category": [QuestionCategory.OPERATORS],
+    "difficulty": QuestionDifficulty.EASY,
+    "question": "What will be the output of the following Elixir code?",
+    "tip": null,
+    "code": "case {1, 2} do\n  {1, x} -> IO.puts(x)\n  {x, 2} -> IO.puts(x)\n  _ -> IO.puts(\"No match\")\nend",
+    "questionType": QuestionType.ONE_CORRECT,
+    "explanation": "The code uses pattern matching in a `case` expression to match the provided tuple. The first pattern `{1, x}` will match the tuple, and the value of `x` will be printed, resulting in the output `2`.",
+    "correctAnswers": [
+      {
+        "id": 1,
+        "text": "2",
+        "correct": true
+      }
+    ],
+    "incorrectAnswers": [
+      {
+        "id": 2,
+        "text": "1",
+        "correct": false
+      },
+      {
+        "id": 3,
+        "text": "{1, 2}",
+        "correct": false
+      },
+      {
+        "id": 4,
+        "text": "No match",
         "correct": false
       }
     ]
@@ -195,12 +326,13 @@ export const Questions: Question[] = [
 ]
 
 
-const QuestionTemplate =
+const QuestionTemplate: Question =
 {
   "id": "",
   "category": [],
-  "difficulty": 0,
+  "difficulty": QuestionDifficulty.EASY,
   "question": "",
+  "tip": "",
   "code": "",
   "questionType": QuestionType.ONE_CORRECT,
   "explanation": "",

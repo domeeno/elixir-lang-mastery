@@ -12,7 +12,7 @@ const Code = (props: Props) => {
         <div className="px-4 py-4">
           {
             props.code.split("\n").map((line, index) => {
-              return <p key={index} className="text-cacao font-mono sm:text-sm text-xs">{line}</p>
+              return <pre key={index} className="text-cacao font-mono sm:text-sm text-xs">{line}</pre>
             })
           }
         </div>

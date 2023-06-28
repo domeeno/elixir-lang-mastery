@@ -1,6 +1,6 @@
 import { navbar } from "../contants"
 
-const Navbar = () => {
+const SocialsNavbar = () => {
   return (
     <div>
       <ul className="flex flex-row">
@@ -16,4 +16,4 @@ const Navbar = () => {
   )
 }
 
-export { Navbar }
+export { SocialsNavbar }

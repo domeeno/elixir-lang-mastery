@@ -1,12 +1,12 @@
 import { text } from "../contants"
-import { ElixirIcon } from "../asset-components/ElixirIcon"
+import { Elixir2PTIcon } from "../asset-components/Elixir2PTIcon"
 import { Line } from "./Line"
 
 const SiteDescription = () => {
   return (
     <div className='flex flex-col justify-end items-end'>
       <div className="flex flex-row items-center">
-        <ElixirIcon className='text-cacao w-[64px]' />
+        <Elixir2PTIcon className='text-cacao w-[64px] opacity-90' />
         <h1 className="text-cacao whitespace-nowrap pl-6">Elixir Lang</h1>
       </div>
       <div className="py-8 w-3/4">

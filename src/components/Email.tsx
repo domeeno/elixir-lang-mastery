@@ -15,4 +15,4 @@ const Email = () => {
   )
 }
 
-export default Email
+export { Email }

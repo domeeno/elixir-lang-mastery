@@ -1,11 +1,12 @@
+import { GameModeProvider } from "./context/GameModeContext"
 import { LandingPage } from "./pages/LandingPage"
 
-function App() {
+const App = () => {
 
   return (
-    <div className="h-full">
+    <GameModeProvider>
       <LandingPage />
-    </div>
+    </GameModeProvider>
   )
 }
 

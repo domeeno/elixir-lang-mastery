@@ -23,4 +23,9 @@
 
 body {
   font-family: 'Hero-Regular', Arial, sans-serif;
+  background-color: #F7F2EF;
+}
+
+html, body, #root, .h-full {
+  height: 100%;
 }

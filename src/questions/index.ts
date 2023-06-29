@@ -322,6 +322,40 @@ export const Questions: Question[] = [
         "correct": false
       }
     ]
+  },
+  {
+    "id": "11",
+    "category": [QuestionCategory.OPERATORS],
+    "difficulty": QuestionDifficulty.MEDIUM,
+    "question": "Which of the following statements about the pin operator in Elixir is correct?",
+    "tip": null,
+    "code": null,
+    "questionType": QuestionType.ONE_CORRECT,
+    "explanation": "The pin operator (^) in Elixir works on both primitive data types and complex data structures. It allows you to bind and pattern match specific values without the risk of accidental reassignment.",
+    "correctAnswers": [
+      {
+        "id": 1,
+        "text": "The pin operator works on both primitive data types and complex data structures.",
+        "correct": true
+      }
+    ],
+    "incorrectAnswers": [
+      {
+        "id": 2,
+        "text": "The pin operator can only be used with primitive data types.",
+        "correct": false
+      },
+      {
+        "id": 3,
+        "text": "The pin operator is used for arithmetic operations.",
+        "correct": false
+      },
+      {
+        "id": 4,
+        "text": "The pin operator is used to negate a value.",
+        "correct": false
+      }
+    ]
   }
 ]
 

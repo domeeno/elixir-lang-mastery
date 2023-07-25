@@ -13,3 +13,8 @@ export const shuffle = (array: any[]) => {
   }
   return shuffledArray;
 }
+
+export const ifConfirmKey = (fn: () => void) => (ev: React.KeyboardEvent) => {
+  if(ev.code!=="Enter" && ev.code!=="Space") return;
+  fn();
+}

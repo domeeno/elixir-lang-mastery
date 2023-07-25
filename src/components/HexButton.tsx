@@ -1,18 +1,27 @@
-import { HexagonFillIcon } from "../asset-components/HexagonFillIcon"
-import { HexagonNoFillicon } from "../asset-components/HexagonNoFillicon"
+import { ifConfirmKey } from "../utils"
 
 type ButtonProps = {
-  buttonText: string
+  text: string
   scale: string
+  onClick: () => void
 }
 
 const HexButton = (props: ButtonProps) => {
+  const handleKeyDown = ifConfirmKey(props.onClick);
+
   return (
-    <div className="relative inline-block">
-      <HexagonFillIcon className="text-cacao" />
-      <HexagonNoFillicon className="text-cream absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-      <h1 className={`text-cream ${props.scale} absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}>{props.buttonText}</h1>
-    </div>
+    <svg width="224" height="251" viewBox="0 0 224 251" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0_1_2)" tabIndex={0} role="button" onClick={props.onClick} onKeyDown={handleKeyDown}>
+        <path d="M95.717 5.28719C100.582 2.4786 106.1 1 111.717 1C117.334 1 122.852 2.4786 127.717 5.28719L207.434 51.3112C212.299 54.1198 216.338 58.1594 219.147 63.0241C221.955 67.8887 223.434 73.407 223.434 79.0242V171.074C223.434 176.691 221.955 182.21 219.147 187.074C216.338 191.939 212.299 195.979 207.434 198.787L127.717 244.811C122.853 247.62 117.334 249.099 111.717 249.099C106.1 249.099 100.581 247.62 95.717 244.811L16 198.787C11.1355 195.978 7.09598 191.939 4.28741 187.074C1.47884 182.21 0.00016984 176.691 5.47009e-10 171.074V79.0242C-3.28388e-05 73.407 1.47855 67.8887 4.28714 63.0241C7.09573 58.1594 11.1354 54.1198 16 51.3112L95.717 5.28719Z" fill="#30251D"/>
+        <path d="M127.217 14.1532L200.006 56.1772C204.719 58.8981 208.632 62.8115 211.353 67.5241C214.074 72.2368 215.506 77.5825 215.506 83.0242V167.074C215.506 172.516 214.073 177.862 211.353 182.574C208.632 187.287 204.718 191.2 200.006 193.921L127.217 235.945C122.504 238.666 117.159 240.099 111.717 240.099C106.275 240.099 100.93 238.666 96.217 235.945L23.427 193.921C18.7144 191.2 14.8011 187.287 12.0803 182.574C9.35949 177.862 7.92707 172.516 7.927 167.074V83.0242C7.92696 77.5825 9.35934 72.2367 12.0802 67.5241C14.801 62.8114 18.7144 58.898 23.427 56.1772L96.217 14.1532C100.93 11.4324 106.275 9.99997 111.717 9.99997C117.159 9.99997 122.504 11.4324 127.217 14.1532Z" stroke="#F7F2EF" stroke-width="2"/>
+        <text fill="white" xmlSpace="preserve" x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" style={{letterSpacing: '0.3rem'}} className={`text-cream uppercase ${props.scale}`}>{props.text}</text>
+      </g>
+      <defs>
+        <clipPath id="clip0_1_2">
+        <rect width="223.434" height="250.099" fill="white"/>
+        </clipPath>
+      </defs>
+    </svg>
   )
 }
 
